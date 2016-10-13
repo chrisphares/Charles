@@ -1,0 +1,45 @@
+<resources>
+
+<properties>
+	<property id="number_prop" type="number">65280</property>
+	<property id="noah_prop" type="number">65280</property>
+</properties>
+
+    <strings>
+       <string id="number_title">Number Color</string>
+       <string id="noah_title">Face Color</string>
+       <string id="Green">Green</string>
+       <string id="Orange">Orange</string>
+       <string id="Blue">Blue</string>
+       <string id="Red">Red</string>
+       <string id="Purple">Purple</string>
+       <string id="Yellow">Yellow</string>
+       <string id="White">White</string>
+    </strings>
+
+    <settings>
+        <setting propertyKey="number_prop" title="Rez.Strings.number_title">
+			<settingConfig type="list">
+				<listEntry value="65280">@Strings.Green</listEntry>
+	            <listEntry value="16755200">@Strings.Orange</listEntry>
+	            <listEntry value="43775">@Strings.Blue</listEntry>
+	            <listEntry value="11141120">@Strings.Red</listEntry>
+	            <listEntry value="11141375">@Strings.Purple</listEntry>
+	            <listEntry value="16733440">@Strings.Yellow</listEntry>
+	            <listEntry value="16777215">@Strings.White</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="noah_prop" title="Rez.Strings.noah_title">
+			<settingConfig type="list">
+				<listEntry value="65280">@Strings.Green</listEntry>
+	            <listEntry value="16755200">@Strings.Orange</listEntry>
+	            <listEntry value="43775">@Strings.Blue</listEntry>
+	            <listEntry value="11141120">@Strings.Red</listEntry>
+	            <listEntry value="11141375">@Strings.Purple</listEntry>
+	            <listEntry value="16733440">@Strings.Yellow</listEntry>
+	            <listEntry value="16777215">@Strings.White</listEntry>
+            </settingConfig>
+        </setting>
+    </settings>
+</resources>
