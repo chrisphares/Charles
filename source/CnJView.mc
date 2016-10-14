@@ -43,13 +43,10 @@ class CnJView extends Ui.WatchFace {
 			bgColor = Gfx.COLOR_WHITE;
 		}
 
+		//get watch time
 		var clockTime = Sys.getClockTime();
+		var timeString = Lang.format("$1$$2$",[clockTime.hour, clockTime.min.format("%02d")]); //hhmm
 
-		var hourString = clockTime.hour;
-		hourString = Lang.format("$1$",[hourString]);
-
-		var minString = clockTime.min;
-		minString = Lang.format("$1$",[minString.format("%02d")]);
 
 		// color background
 		dc.setColor(bgColor, Gfx.COLOR_TRANSPARENT);
@@ -119,11 +116,8 @@ class CnJView extends Ui.WatchFace {
 		//set font color to selected from Garmin Connect/storage
 		dc.setColor(numColor, Gfx.COLOR_TRANSPARENT);
 
-		// hours
-		dc.drawText(57, 18, Gfx.FONT_NUMBER_MEDIUM, hourString, Gfx.TEXT_JUSTIFY_RIGHT);
-
-		// minutes
-		dc.drawText(59, 18, Gfx.FONT_NUMBER_MEDIUM, minString, Gfx.TEXT_JUSTIFY_LEFT);
+		// time
+		dc.drawText(90, 18, Gfx.FONT_NUMBER_MEDIUM, timeString, Gfx.TEXT_JUSTIFY_RIGHT);
 
 		// seconds
 		dc.drawText(190, 86, Gfx.FONT_MEDIUM, secString, Gfx.TEXT_JUSTIFY_LEFT);
