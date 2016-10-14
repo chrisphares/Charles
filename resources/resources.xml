@@ -1,4 +1,2 @@
 <resources>
-	<font id="bowtie_fnt" filename="./drawables/bowtie_fnt.fnt" filter="B"/>
-	<font id="cnjBG_fnt" filename="./drawables/cnjBG.fnt" filter="A"/>
 </resources>

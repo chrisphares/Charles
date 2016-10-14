@@ -1,45 +1,87 @@
 <resources>
 
 <properties>
-	<property id="number_prop" type="number">65280</property>
-	<property id="noah_prop" type="number">65280</property>
+	<property id="num_prop" type="number">0</property>
+	<property id="bow_prop" type="number">11141120</property>
+	<property id="bg_prop" type="number">16777215</property>
 </properties>
 
-    <strings>
-       <string id="number_title">Number Color</string>
-       <string id="noah_title">Face Color</string>
-       <string id="Green">Green</string>
-       <string id="Orange">Orange</string>
-       <string id="Blue">Blue</string>
-       <string id="Red">Red</string>
-       <string id="Purple">Purple</string>
-       <string id="Yellow">Yellow</string>
-       <string id="White">White</string>
-    </strings>
+	<strings>
+		<string id="num_title">Number Color</string>
+		<string id="bow_title">Bowtie Color</string>
+		<string id="bg_title">Background Color</string>
+		<string id="White">White</string>
+		<string id="Black">Black</string>
+		<string id="Lt_Gray">Light Gray</string>
+		<string id="Dk_Gray">Dark Gray</string>
+		<string id="Red">Red</string>
+		<string id="Dk_Red">Dark Red</string>
+		<string id="Orange">Orange</string>
+		<string id="Yellow">Yellow</string>
+		<string id="Green">Green</string>
+		<string id="Dk_Green">Dark Green</string>
+		<string id="Blue">Blue</string>
+		<string id="Dk_Blue">Dark Blue</string>
+		<string id="Pink">Pink</string>
+		<string id="Purple">Purple</string>
+	</strings>
 
-    <settings>
-        <setting propertyKey="number_prop" title="Rez.Strings.number_title">
+	<settings>
+		<setting propertyKey="@Properties.num_prop" title="@Strings.num_title">
 			<settingConfig type="list">
+				<listEntry value="16777215">@Strings.White</listEntry>
+				<listEntry value="0">@Strings.Black</listEntry>
+				<listEntry value="11184810">@Strings.Lt_Gray</listEntry>
+				<listEntry value="5592405">@Strings.Dk_Gray</listEntry>
+				<listEntry value="16711680">@Strings.Red</listEntry>
+				<listEntry value="11141120">@Strings.Dk_Red</listEntry>
+				<listEntry value="16755200">@Strings.Orange</listEntry>
+				<listEntry value="16733440">@Strings.Yellow</listEntry>
 				<listEntry value="65280">@Strings.Green</listEntry>
-	            <listEntry value="16755200">@Strings.Orange</listEntry>
-	            <listEntry value="43775">@Strings.Blue</listEntry>
-	            <listEntry value="11141120">@Strings.Red</listEntry>
-	            <listEntry value="11141375">@Strings.Purple</listEntry>
-	            <listEntry value="16733440">@Strings.Yellow</listEntry>
-	            <listEntry value="16777215">@Strings.White</listEntry>
-            </settingConfig>
+				<listEntry value="43520">@Strings.Dk_Green</listEntry>
+				<listEntry value="43775">@Strings.Blue</listEntry>
+				<listEntry value="255">@Strings.Dk_Blue</listEntry>
+				<listEntry value="16711935">@Strings.Pink</listEntry>
+				<listEntry value="11141375">@Strings.Purple</listEntry>
+			</settingConfig>
         </setting>
 
-        <setting propertyKey="noah_prop" title="Rez.Strings.noah_title">
+		<setting propertyKey="@Properties.bow_prop" title="@Strings.bow_title">
 			<settingConfig type="list">
+				<listEntry value="16777215">@Strings.White</listEntry>
+				<listEntry value="0">@Strings.Black</listEntry>
+				<listEntry value="11184810">@Strings.Lt_Gray</listEntry>
+				<listEntry value="5592405">@Strings.Dk_Gray</listEntry>
+				<listEntry value="16711680">@Strings.Red</listEntry>
+				<listEntry value="11141120">@Strings.Dk_Red</listEntry>
+				<listEntry value="16755200">@Strings.Orange</listEntry>
+				<listEntry value="16733440">@Strings.Yellow</listEntry>
 				<listEntry value="65280">@Strings.Green</listEntry>
-	            <listEntry value="16755200">@Strings.Orange</listEntry>
-	            <listEntry value="43775">@Strings.Blue</listEntry>
-	            <listEntry value="11141120">@Strings.Red</listEntry>
-	            <listEntry value="11141375">@Strings.Purple</listEntry>
-	            <listEntry value="16733440">@Strings.Yellow</listEntry>
-	            <listEntry value="16777215">@Strings.White</listEntry>
-            </settingConfig>
-        </setting>
-    </settings>
+				<listEntry value="43520">@Strings.Dk_Green</listEntry>
+				<listEntry value="43775">@Strings.Blue</listEntry>
+				<listEntry value="255">@Strings.Dk_Blue</listEntry>
+				<listEntry value="16711935">@Strings.Pink</listEntry>
+				<listEntry value="11141375">@Strings.Purple</listEntry>
+			</settingConfig>
+		</setting>
+
+		<setting propertyKey="@Properties.bg_prop" title="@Strings.bg_title">
+			<settingConfig type="list">
+				<listEntry value="16777215">@Strings.White</listEntry>
+				<listEntry value="0">@Strings.Black</listEntry>
+				<listEntry value="11184810">@Strings.Lt_Gray</listEntry>
+				<listEntry value="5592405">@Strings.Dk_Gray</listEntry>
+				<listEntry value="16711680">@Strings.Red</listEntry>
+				<listEntry value="11141120">@Strings.Dk_Red</listEntry>
+				<listEntry value="16755200">@Strings.Orange</listEntry>
+				<listEntry value="16733440">@Strings.Yellow</listEntry>
+				<listEntry value="65280">@Strings.Green</listEntry>
+				<listEntry value="43520">@Strings.Dk_Green</listEntry>
+				<listEntry value="43775">@Strings.Blue</listEntry>
+				<listEntry value="255">@Strings.Dk_Blue</listEntry>
+				<listEntry value="16711935">@Strings.Pink</listEntry>
+				<listEntry value="11141375">@Strings.Purple</listEntry>
+			</settingConfig>
+		</setting>
+	</settings>
 </resources>

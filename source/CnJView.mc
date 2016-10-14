@@ -8,21 +8,15 @@ using Toybox.Time.Gregorian as Calendar;
 class CnJView extends Ui.WatchFace {
 
 	var cnjBG;
-	var cnjFont;
-	var cnjBGFont;
 	var showOther = false;
 	var secString = "";
 	var batString = "";
-	var date = "";
-	var month = "";
-	var batColor = Gfx.COLOR_WHITE;
-	var batWidth = 0;
+	var dateString = "";
+	var monthString = "";
 
     function initialize() {
         WatchFace.initialize();
 		cnjBG = new Ui.Bitmap({:rezId=>Rez.Drawables.cnj});
-		cnjFont = Ui.loadResource(Rez.Fonts.bowtie_fnt);
-		cnjBGFont = Ui.loadResource(Rez.Fonts.cnjBG_fnt);
     }
 
 	function onLayout(dc) {
@@ -30,6 +24,24 @@ class CnJView extends Ui.WatchFace {
 
     function onUpdate(dc) {
 		View.onUpdate(dc);
+
+		//pull data from Garmin Connect/storage
+		var app = App.getApp();
+
+		var  numColor = app.getProperty("num_prop");
+		if (numColor == null) {
+			numColor = Gfx.COLOR_BLACK;
+		}
+
+		var bowColor = app.getProperty("bow_prop");
+		if (bowColor == null) {
+			bowColor = Gfx.COLOR_DK_RED;
+		}
+
+		var bgColor = app.getProperty("bg_prop");
+		if (bgColor == null) {
+			bgColor = Gfx.COLOR_WHITE;
+		}
 
 		var clockTime = Sys.getClockTime();
 
@@ -39,18 +51,19 @@ class CnJView extends Ui.WatchFace {
 		var minString = clockTime.min;
 		minString = Lang.format("$1$",[minString.format("%02d")]);
 
+		// color background
+		dc.setColor(bgColor, Gfx.COLOR_TRANSPARENT);
+		dc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
+
+		// color bowtie
+		dc.setColor(bowColor, Gfx.COLOR_TRANSPARENT);
+		dc.fillRectangle(125, 145, 65, 45);
+
 		// draw faces
 	    cnjBG.draw(dc);
 
-		// draw bowtie
-	    dc.setColor(Gfx.COLOR_DK_RED, Gfx.COLOR_TRANSPARENT);
-	    dc.drawText(0, -1, cnjFont, "B", Gfx.TEXT_JUSTIFY_LEFT);
-
-		// draw background
-	    dc.setColor(Gfx.COLOR_TRANSPARENT, Gfx.COLOR_LT_GRAY);
-	    dc.drawText(0, -1, cnjBGFont, "A", Gfx.TEXT_JUSTIFY_LEFT);
-
 		if (showOther) {
+			//retrieve time & date
 			secString = clockTime.sec;
 			secString = Lang.format("$1$",[secString]);
 
@@ -58,8 +71,13 @@ class CnJView extends Ui.WatchFace {
 
 			var now = Time.now();
 			var info = Calendar.info(now, Time.FORMAT_LONG);
-			month = Lang.format("$1$", [info.month]);
-			date = Lang.format("$1$", [info.day]);
+			monthString = Lang.format("$1$", [info.month]);
+			dateString = Lang.format("$1$", [info.day]);
+
+			//retrieve battery data
+			var batWidth = 0;
+			var batColor = Gfx.COLOR_DK_GRAY;
+			var batOutline = Gfx.COLOR_WHITE;
 
 			var battery = sysStats.battery;
 			batString = Lang.format("$1$",[battery.format("%01.0i")]) + '%';
@@ -75,8 +93,17 @@ class CnJView extends Ui.WatchFace {
 			}
 
 			//draw battery icon as a series of overlapping rectangles
+
+			//make it visibile if the BG color is the white
+			if (bgColor == Gfx.COLOR_WHITE) {
+				batOutline = Gfx.COLOR_DK_GRAY;
+			}
+			else {
+				batOutline = Gfx.COLOR_WHITE;
+			}
+
 			dc.setPenWidth(10);
-			dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
+			dc.setColor(batOutline, Gfx.COLOR_TRANSPARENT);
 	    	dc.drawLine(6, 104, 20, 104);
 
 			dc.setPenWidth(8);
@@ -89,21 +116,23 @@ class CnJView extends Ui.WatchFace {
 	    	dc.drawLine(18, 104, batWidth, 104);
 		}
 
+		//set font color to selected from Garmin Connect/storage
+		dc.setColor(numColor, Gfx.COLOR_TRANSPARENT);
+
 		// hours
-		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
-		dc.drawText(59, 18, Gfx.FONT_NUMBER_MEDIUM, hourString, Gfx.TEXT_JUSTIFY_RIGHT);
+		dc.drawText(57, 18, Gfx.FONT_NUMBER_MEDIUM, hourString, Gfx.TEXT_JUSTIFY_RIGHT);
 
 		// minutes
-		dc.drawText(61, 18, Gfx.FONT_NUMBER_MEDIUM, minString, Gfx.TEXT_JUSTIFY_LEFT);
+		dc.drawText(59, 18, Gfx.FONT_NUMBER_MEDIUM, minString, Gfx.TEXT_JUSTIFY_LEFT);
 
 		// seconds
 		dc.drawText(190, 86, Gfx.FONT_MEDIUM, secString, Gfx.TEXT_JUSTIFY_LEFT);
 
 		// date
-		dc.drawText(99, 10, Gfx.FONT_SYSTEM_TINY, date, Gfx.TEXT_JUSTIFY_RIGHT);
+		dc.drawText(99, 10, Gfx.FONT_SYSTEM_TINY, dateString, Gfx.TEXT_JUSTIFY_RIGHT);
 
-		// calendare month
-		dc.drawText(72, 10, Gfx.FONT_SYSTEM_TINY, month, Gfx.TEXT_JUSTIFY_RIGHT);
+		// calendar month
+		dc.drawText(72, 10, Gfx.FONT_SYSTEM_TINY, monthString, Gfx.TEXT_JUSTIFY_RIGHT);
 
 		// battery percentage
 		dc.drawText(29, 80, Gfx.FONT_SYSTEM_XTINY, batString, Gfx.TEXT_JUSTIFY_RIGHT);
@@ -121,8 +150,8 @@ class CnJView extends Ui.WatchFace {
 	function clearData() {
 		secString = "";
 		batString = "";
-		date = "";
-		month = "";
+		dateString = "";
+		monthString = "";
 		showOther = false;
 		return true;
 	}
