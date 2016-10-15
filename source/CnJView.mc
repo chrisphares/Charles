@@ -66,7 +66,7 @@ class CnJView extends Ui.WatchFace {
 
 			var sysStats = Sys.getSystemStats();
 
-			var now = Time.now();
+			var now = Time.now(); //its now, now.
 			var info = Calendar.info(now, Time.FORMAT_LONG);
 			monthString = Lang.format("$1$", [info.month]);
 			dateString = Lang.format("$1$", [info.day]);
@@ -141,6 +141,7 @@ class CnJView extends Ui.WatchFace {
 		Ui.requestUpdate();
 	}
 
+	//clear the data so display is nothing
 	function clearData() {
 		secString = "";
 		batString = "";
